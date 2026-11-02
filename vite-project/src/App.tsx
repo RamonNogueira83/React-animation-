@@ -88,7 +88,9 @@ const navigation = {
   display: "flex",
   gap: 12,
   marginBottom: 24,
-}
+  justifyContent: "center",
+  flexWrap: "wrap",
+} as const
 
 function navigateTo(page: string) {
   window.location.hash = page
@@ -248,7 +250,14 @@ function Pagina2() {
         initial={{ opacity: 0, y: 30, rotateX: 8 }}
         animate={{ opacity: 1, y: 0, rotateX: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        style={{ display: "grid", gap: 28, perspective: 1200 }}
+        style={{
+          width: "100%",
+          display: "grid",
+          justifyItems: "center",
+          gap: 28,
+          perspective: 1200,
+          overflow: "hidden",
+        }}
       >
         <motion.h1
           initial={{ opacity: 0, x: -30 }}
@@ -337,7 +346,7 @@ function Pagina2() {
           </motion.div>
         </motion.div>
       </motion.main>
-      <button style={navigationButton} onClick={() => navigateTo("/pagina-3")}>Abrir página 3</button>
+      <button style={{ ...navigationButton, display: "block", margin: "24px auto 0" }} onClick={() => navigateTo("/pagina-3")}>Abrir página 3</button>
     </>
   )
 }
@@ -390,7 +399,14 @@ function Pagina3() {
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ display: "grid", justifyItems: "start", gap: 28, perspective: 1000 }}
+        style={{
+          width: "100%",
+          display: "grid",
+          justifyItems: "center",
+          gap: 28,
+          perspective: 1000,
+          overflowX: "hidden",
+        }}
       >
         <h1>Página 3</h1>
         <motion.section
@@ -402,6 +418,7 @@ function Pagina3() {
             display: "grid",
             gap: 18,
             padding: 28,
+            boxSizing: "border-box",
             borderRadius: 32,
             border: "1px solid rgba(103,232,249,.18)",
             background: "linear-gradient(145deg, rgba(5,12,30,.96), rgba(13,20,45,.88))",
@@ -451,7 +468,7 @@ function Pagina3() {
                     top: 16,
                     width: "min(380px, 72vw)",
                     height: 380,
-                    marginLeft: "min(-190px, -36vw)",
+                    marginLeft: "calc(min(380px, 72vw) / -2)",
                     borderRadius: 24,
                     overflow: "hidden",
                     cursor: isActive ? "grab" : "pointer",
